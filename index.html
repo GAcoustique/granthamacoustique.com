@@ -176,12 +176,12 @@ document.querySelector("[data-grid]").innerHTML=P.map(p=>`<button data-open="${p
 // carousel
 const car=document.querySelector("[data-car]"),tr=car.querySelector(".track"),cap=car.querySelector("[data-cap]");
 tr.innerHTML=slides.map(([s,k])=>`<img src="img/${s}" alt="${esc(P[byS[k]][1])}" data-open="${k}">`).join("");
-const CITY={treehouse:"Sainte-Adèle"};let ci=0;function go(i){ci=(i+slides.length)%slides.length;tr.scrollTo({left:tr.clientWidth*ci,behavior:"smooth"});cap.textContent=(P[byS[slides[ci][1]]][1]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}
+const CITY={treehouse:"Sainte-Adèle"};let ci=0;function go(i){ci=(i+slides.length)%slides.length;tr.scrollTo({left:tr.clientWidth*ci,behavior:"smooth"});cap.textContent=(P[byS[slides[ci][1]]][1].split(",")[0]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}
 go(0);
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 let paused=false;car.addEventListener("pointerenter",()=>paused=true);car.addEventListener("pointerleave",()=>paused=false);
 if(!reduce)setInterval(()=>{if(!paused&&cur<0&&!document.hidden)go(ci+1)},5500);
-tr.addEventListener("scroll",()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);if(i!==ci&&i>=0&&i<slides.length){ci=i;cap.textContent=(P[byS[slides[ci][1]]][1]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}},{passive:true});
+tr.addEventListener("scroll",()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);if(i!==ci&&i>=0&&i<slides.length){ci=i;cap.textContent=(P[byS[slides[ci][1]]][1].split(",")[0]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}},{passive:true});
 addEventListener("resize",()=>go(ci));
 // viewer
 const V=document.querySelector(".viewer"),VB=V.querySelector(".vbody");let cur=-1,lastFocus=null;
