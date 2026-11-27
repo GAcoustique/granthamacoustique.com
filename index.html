@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Grantham Acoustique — Salles pour le son et l'image</title>
 <meta name="description" content="Grantham Acoustique, Montréal. Conception de salles pour le son et l'image, acoustique architecturale et insonorisation.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://granthamacoustique.com/">
+<meta property="og:title" content="Grantham Acoustique — Salles pour le son et l'image">
+<meta property="og:description" content="Grantham Acoustique, Montréal. Conception de salles pour le son et l'image, acoustique architecturale et insonorisation.">
+<meta property="og:image" content="https://granthamacoustique.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -147,7 +154,7 @@ const P=[
  ["cult-nation","Cult Nation","p14",2,[A]],
  ["gamma","Gamma Recording","p15",4,["Pat Sayers"]],
  ["phi","Centre PHI, Habitat sonore","p16",3,["Phil Rochefort"]],
- ["edgar","fo.ne.tik","p17",4,[A]],
+ ["fonetik","fo.ne.tik","p17",4,[A]],
  ["le-hublot","Studio Le Hublot","p18",4,[],["Julie Durocher","Julie Durocher","","Julie Durocher"]],
  ["pixel-audio","Pixel Audio","p20",3,[],["Raphaël Thibodeau","Raphaël Thibodeau",""]],
  ["beam","Le BEAM","p21",5,[],["","","","",""]],
@@ -168,19 +175,19 @@ document.querySelector("[data-grid]").innerHTML=P.map(p=>`<button data-open="${p
 // carousel
 const car=document.querySelector("[data-car]"),tr=car.querySelector(".track"),cap=car.querySelector("[data-cap]");
 tr.innerHTML=slides.map(([s,k])=>`<img src="img/${s}" alt="${esc(P[byS[k]][1])}" data-open="${k}">`).join("");
-let ci=0;function go(i){ci=(i+slides.length)%slides.length;tr.scrollTo({left:tr.clientWidth*ci,behavior:"smooth"});cap.textContent=(P[byS[slides[ci][1]]][1]+", Montréal").toUpperCase()}
+const CITY={treehouse:"Sainte-Adèle"};let ci=0;function go(i){ci=(i+slides.length)%slides.length;tr.scrollTo({left:tr.clientWidth*ci,behavior:"smooth"});cap.textContent=(P[byS[slides[ci][1]]][1]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}
 go(0);
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 let paused=false;car.addEventListener("pointerenter",()=>paused=true);car.addEventListener("pointerleave",()=>paused=false);
 if(!reduce)setInterval(()=>{if(!paused&&cur<0&&!document.hidden)go(ci+1)},5500);
-tr.addEventListener("scroll",()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);if(i!==ci&&i>=0&&i<slides.length){ci=i;cap.textContent=(P[byS[slides[ci][1]]][1]+", Montréal").toUpperCase()}},{passive:true});
+tr.addEventListener("scroll",()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);if(i!==ci&&i>=0&&i<slides.length){ci=i;cap.textContent=(P[byS[slides[ci][1]]][1]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}},{passive:true});
 addEventListener("resize",()=>go(ci));
 // viewer
 const V=document.querySelector(".viewer"),VB=V.querySelector(".vbody");let cur=-1,lastFocus=null;
 function open(i,keep){cur=(i+P.length)%P.length;const [s,n,,c,co,cr=[],pr=[]]=P[cur],t=T[L];
  V.querySelector("#vtitle").textContent=n;
  let h="";for(let k=1;k<=c;k++){const who=cr[k-1];h+=`<figure><img src="img/${s}-${k}.jpg" alt="${esc(n)}, ${k}/${c}" ${k>2?'loading="lazy"':''}>${who?`<figcaption>${t.photo} : ${esc(who)}</figcaption>`:""}</figure>`}
- h+=`<div class="vmeta">`+(co.length?`<p>${t.avec} ${co.map(esc).join(" · ")}</p>`:"")+(pr.length?`<p>${t.press} : ${pr.map(([a,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(a)}</a>`).join(" · ")}</p>`:"")+`</div>`;
+ if(co.length||pr.length)h+=`<div class="vmeta">`+(co.length?`<p>${t.avec} ${co.map(esc).join(" · ")}</p>`:"")+(pr.length?`<p>${t.press} : ${pr.map(([a,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(a)}</a>`).join(" · ")}</p>`:"")+`</div>`;
  if(L==="en")h=h.replace(/ : /g,": ");
  VB.innerHTML=h;
  if(!keep){V.scrollTop=0;if(!V.classList.contains("on")){lastFocus=document.activeElement;V.classList.add("on");document.body.style.overflow="hidden"}
