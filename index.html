@@ -153,7 +153,7 @@ const P=[
  ["beam","Le BEAM","p21",5,[],["","","","",""]],
  ["ryan-morey","Ryan Morey","p22",4,[],["","","",""]],
  ["lamajeure-d","Lamajeure, Studio D","p23",4,[]]];
-const slides=[["h1.jpg","outpost"],["h2.jpg","circonflexe"],["h8.jpg","gamma"],["h3.jpg","outpost"],["h9.jpg","treehouse"],["h4.jpg","circonflexe"],["h7.jpg","cult-nation"],["h5.jpg","outpost"]];
+const slides=[["h1.jpg","outpost"],["h2.jpg","circonflexe"],["h3.jpg","outpost"],["h9.jpg","treehouse"],["h4.jpg","circonflexe"],["h7.jpg","cult-nation"],["h5.jpg","outpost"],["h8.jpg","gamma"]];
 const byS=Object.fromEntries(P.map((p,i)=>[p[0],i]));
 let L="fr";try{L=localStorage.getItem("ga-lang")||"fr"}catch(e){}
 const qs=new URLSearchParams(location.search).get("lang");if(qs==="en"||qs==="fr")L=qs;
