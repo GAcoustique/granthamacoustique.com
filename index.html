@@ -43,6 +43,7 @@ header img{width:150px;display:block}
 .grid img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eee;transition:opacity .2s}
 .grid button:hover img,.grid button:focus-visible img{opacity:.82}
 .grid span{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-top:8px;color:#333}
+.more{margin:0 var(--pad);padding:0 0 8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase}.more a{border-bottom:1px solid #bbb}.more a:hover{border-color:#111}
 /* text sections */
 section.text{border-top:1px solid var(--line);margin:24px var(--pad) 0;padding:40px 0 8px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 section.text>:nth-child(2){grid-column:2/-1}
@@ -67,7 +68,7 @@ footer{padding:48px var(--pad) 32px;font-size:12px;color:var(--mute)}
 .vbody img{display:block;max-width:100%;max-height:86vh;margin:0 auto;background:#f2f2f2}
 .vbody figcaption{text-align:center;font-size:12px;color:var(--mute);margin-top:6px}
 .vmeta{border-top:1px solid var(--line);padding-top:20px;max-width:760px;margin:8px auto 0;font-weight:300}
-.vmeta p{margin:0 0 8px}
+.vmeta p{margin:0 0 6px}.vmeta .vsp{margin-top:16px}
 .vmeta a{border-bottom:1px solid #bbb}
 @media(max-width:900px){.services{grid-template-columns:1fr;gap:32px}.services>div{padding-right:0}section.text{grid-template-columns:1fr;gap:24px}section.text>:nth-child(2){grid-column:auto}}
 @media(max-width:700px){.car{height:62svh;min-height:0}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}header img{width:130px}.nav{gap:20px}}
@@ -86,11 +87,12 @@ footer{padding:48px var(--pad) 32px;font-size:12px;color:var(--mute)}
 </div>
 <div class="under">
  <div class="lines"><p class="line" data-t="tagline"></p><p class="line2" data-t="tagline2"></p></div>
- <nav class="nav"><a href="#realisations" data-t="n1"></a><a href="#services" data-t="n2"></a><a href="#contact" data-t="n3"></a></nav>
+ <nav class="nav"><a href="#realisations" data-t="n1"></a><a href="#services" data-t="n2"></a><a href="#contact" data-t="n3"></a><a href="projets/" data-t="n4"></a><a href="presse/" data-t="n5"></a></nav>
 </div>
 
 <p class="head" id="realisations" data-t="n1"></p>
 <div class="grid" data-grid></div>
+<p class="more"><a href="projets/" data-t="more"></a></p>
 
 <section class="text" id="services">
  <h2 data-t="n2"></h2>
@@ -128,79 +130,86 @@ const T={
   s1h:"Salles pour le son et l’image",s1:"Studios, régies, mixage et mastering, postproduction, salles d’écoute. Salles Dolby Atmos et accompagnement pour la certification Feature Studio. Isolation, contrôle des modes et des premières réflexions, traitement à large bande.",
   s2h:"Acoustique architecturale",s2:"Conception acoustique au sein de l’équipe de professionnels : isolation entre usages, bruit des équipements, salles. Plans et détails, par phases, jusqu’au chantier.",
   s3h:"Insonorisation",s3:"Diagnostic, recommandations et plans d’isolation, en bâtiment neuf ou existant : murs, planchers, plafonds, portes, fenêtres, ventilation. Visites de chantier.",
-  avec:"Avec",photo:"Photo",press:"Presse",prev:"←",next:"→",close:"Fermer ✕"},
+  avec:"Avec",photo:"Photo",press:"Presse",site:"Site",n4:"Index",n5:"Presse",more:"Index — 81 réalisations depuis 2014 →",prev:"←",next:"→",close:"Fermer ✕"},
  en:{tagline:"Grantham Acoustique designs recording, mixing and post-production studios, for sound and picture.",tagline2:"Architectural acoustics and soundproofing.",n1:"Projects",n2:"Services",n3:"Contact",
   s1h:"Rooms for sound and picture",s1:"Studios, control rooms, mixing and mastering, post-production, listening rooms. Dolby Atmos rooms and support for Feature Studio certification. Isolation, control of modes and early reflections, broadband treatment.",
   s2h:"Architectural acoustics",s2:"Acoustic design within the professional team: isolation between uses, equipment noise, rooms. Drawings and details, phase by phase, through to construction.",
   s3h:"Soundproofing",s3:"Diagnosis, recommendations and isolation drawings, for new or existing buildings: walls, floors, ceilings, doors, windows, ventilation. Site visits.",
-  avec:"With",photo:"Photo",press:"Press",prev:"←",next:"→",close:"Close ✕"}};
-const A="Antarès Rénovation", CM="Colin Munro Architecte";
-// [slug, name, thumb, photo count, co-credits, per-photo credits, press]
+  avec:"With",photo:"Photo",press:"Press",site:"Website",n4:"Index",n5:"Press",more:"Index — 81 projects since 2014 →",prev:"←",next:"→",close:"Close ✕"}};
+// [slug, name, thumb, photo count, credit lines [who, role fr, role en], per-photo credits, press, client site]
 const P=[
- ["outpost","Outpost, salle 5.1 et isoloir","p01",5,["Espace 313",A]],
- ["parade","Parade Studios","p04",7,["Ivy Studio"],["Alex Lesage","Alex Lesage","Alex Lesage","Alex Lesage","Alex Lesage","Alex Lesage","Alex Lesage"],[["ArchDaily, 2024","https://www.archdaily.com/1023962/parade-studios-ivy-studio"]]],
- ["circonflexe","Studio Circonflexe","p03",10,[CM,"Zébulon Perron",A],["Olivier Blouin","Olivier Blouin","Olivier Blouin","Olivier Blouin","David Boyer","David Boyer","David Boyer","Olivier Blouin","David Boyer","David Boyer"]],
- ["studio-3","Studio 3","p11",6,["Simon de l’Étoile"]],
- ["outpost-suite","Outpost, salle Atmos Film","p24",3,["Espace 313",A]],
- ["cinema-moderne","Cinéma Moderne","p19",4,["Barin Architecture (aujourd’hui COEX)","Alexandre Domingue","Benjamin Rankin"],["","Peter Berra","Peter Berra","Peter Berra"],[["La Presse, 2018","https://www.lapresse.ca/cinema/nouvelles/201809/18/01-5196947-le-cinema-moderne-ouvre-ses-portes.php"],["Radio-Canada, 2018","https://ici.radio-canada.ca/article/info/1124447/cinema-moderne-montreal-mile-end-programmation-nouveau-films"],["La Presse, 2019","https://www.lapresse.ca/cinema/2019-09-17/le-cinema-moderne-a-un-an"]]],
- ["dandurand","Studio Dandurand","p08",13,[CM,A]],
- ["cult-nation","Cult Nation","p14",2,[A]],
- ["makina","Makina","p02",4,["Rose Architecture",A]],
- ["evil-eye","Studio Evil Eye","p05",11,[],["Behind Creation","Behind Creation","Behind Creation","Behind Creation","Behind Creation","Behind Creation","Behind Creation","Behind Creation","Behind Creation","Behind Creation","Behind Creation"]],
- ["gamma","Gamma Recording","p15",9,["Pat Sayers","Samuel Gemme"]],
- ["lamajeure","Lamajeure, Studio F","p10",9,[A]],
- ["pixel-audio","Pixel Audio","p20",3,[],["Raphaël Thibodeau","Raphaël Thibodeau",""]],
- ["ian-kelly","Ian Kelly","p09",4,[]],
- ["treehouse","Treehouse","p12",4,[]],
- ["lamajeure-d","Lamajeure, Studio D","p23",4,[]],
- ["tone","Tone Studio","p07",5,[A],["James Duhamel","James Duhamel","James Duhamel","James Duhamel","James Duhamel"]],
- ["phi","Centre PHI, Habitat sonore","p16",3,["Phil Rochefort"]],
- ["fonetik","fo.ne.tik","p17",10,[A]],
- ["le-hublot","Studio Le Hublot","p18",8,[],["","Julie Durocher","Julie Durocher","Julie Durocher","Julie Durocher","","","Julie Durocher"]],
- ["beam","Le BEAM","p21",5,[],["","","","",""]],
- ["ryan-morey","Ryan Morey Mastering","p22",4,[],["","","",""]],
- ["la-shop","La Shop","p13",5,[A]],
- ["codell","Codell Audio","p06",4,[A]]];
+ ["outpost", ["Outpost, mixage 5.1 et isoloir", "Outpost, 5.1 mix room and vocal booth"], "p01", 5, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Espace 313", "design intérieur", "interior design"], ["Antarès Rénovation", "construction", "construction"]], [], [], "https://www.outpostmtl.com"],
+ ["parade", "Parade Studios", "p04", 7, [["Grantham Acoustique", "conception, acoustique des salles et insonorisation", "concept, room acoustics and soundproofing"], ["Ivy Studio", "architecture et design", "architecture and design"], ["Alexandre Mercier Linteau, ing. (AML Gestion-Conseil)", "structure", "structural engineering"]], ["Alex Lesage", "Alex Lesage", "Alex Lesage", "Alex Lesage", "Alex Lesage", "Alex Lesage", "Alex Lesage"], [["ArchDaily, 2024", "https://www.archdaily.com/1023962/parade-studios-ivy-studio"]], "https://www.paradestudios.com"],
+ ["circonflexe", "Studio Circonflex", "p03", 10, [["Grantham Acoustique et Colin Munro", "conception", "concept"], ["Grantham Acoustique", "design, acoustique et insonorisation des salles", "design, room acoustics and soundproofing"], ["Atelier Zébulon Perron", "design intérieur", "interior design"], ["Antarès Rénovation", "construction", "construction"]], ["Olivier Blouin", "Olivier Blouin", "Olivier Blouin", "Olivier Blouin", "David Boyer", "David Boyer", "David Boyer", "Olivier Blouin", "David Boyer", "David Boyer"], [["Grands Prix du Design — certification argent, acoustique", "https://int.design/en/?p=64905"], ["La Presse, 2019", "https://www.lapresse.ca/societe/2019-08-06/du-studio-aux-fourneaux"]], "https://www.circonflex.com"],
+ ["studio-3", "Studio 3", "p11", 6, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Simon de l’Étoile et Guillaume Garant", "construction", "construction"]], [], [], ""],
+ ["outpost-suite", ["Outpost, mixage cinéma Dolby Atmos", "Outpost, Dolby Atmos cinema mix room"], "p24", 3, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Espace 313", "design intérieur", "interior design"], ["Antarès Rénovation", "construction", "construction"]], [], [], "https://www.outpostmtl.com"],
+ ["cinema-moderne", "Cinéma Moderne", "p19", 4, [["Grantham Acoustique, Barin Architecture (aujourd’hui COEX) et Alexandre Domingue", "conception", "concept"], ["Grantham Acoustique", "design, acoustique et insonorisation des salles", "design, room acoustics and soundproofing"], ["Barin Architecture (aujourd’hui COEX), Benjamin Rankin", "architecture", "architecture"], ["M.A Construction", "construction", "construction"]], ["", "Peter Berra", "Peter Berra", "Peter Berra"], [["Radio-Canada, 2018", "https://ici.radio-canada.ca/nouvelle/1124447/cinema-moderne-montreal-mile-end-programmation-nouveau-films"], ["La Presse, 2018", "https://www.lapresse.ca/cinema/201803/02/01-5155881-un-nouveau-cinema-dans-le-mile-end.php"], ["La Presse, 2019", "https://www.lapresse.ca/cinema/cinema-quebecois/201903/06/01-5217230-laudace-des-cinemas-de-quartier.php"], ["Cult MTL, 2018", "https://cultmtl.com/2018/09/cinema-moderne/"]], "https://cinemamoderne.com"],
+ ["dandurand", "Studio Dandurand", "p08", 13, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Colin Munro Architecte", "architecture", "architecture"], ["Donald Arsenault, ingénieur-conseil", "structure", "structural engineering"], ["Antarès Rénovation", "construction", "construction"]], [], [["La Presse, 2017", "https://www.lapresse.ca/arts/musique/201708/14/01-5124421-louis-jean-cormier-artiste-proprietaire.php"], ["Journal de Montréal, 2018", "https://www.journaldemontreal.com/2018/12/06/serge-fiori-et-louis-jean-cormier-la-magie-opere-en-studio-1"]], "https://studiodandurand.com"],
+ ["cult-nation", "Cult Nation", "p14", 2, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Nathalie Pépin et Vives St-Laurent", "design intérieur", "interior design"], ["Antarès Rénovation", "construction", "construction"]], [], [], "https://thecultnation.com"],
+ ["makina", "Makina", "p02", 4, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Rose Architecture", "architecture", "architecture"], ["Antarès Rénovation", "construction", "construction"]], [], [], ""],
+ ["evil-eye", "Studio Evil Eye", "p05", 11, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Jeffrey Fréchette et Sacha Rose", "construction", "construction"]], ["Behind Creation", "Behind Creation", "Behind Creation", "Behind Creation", "Behind Creation", "Behind Creation", "Behind Creation", "Behind Creation", "Behind Creation", "Behind Creation", "Behind Creation"], [], "https://studioevileye.ca"],
+ ["gamma", "Gamma Recording", "p15", 9, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Pat Sayers et Samuel Gemme", "construction", "construction"]], [], [], "https://gammarecordingstudio.com"],
+ ["lamajeure", "Lamajeure, Studio F", "p10", 9, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Perron Design", "design intérieur", "interior design"], ["Antarès Rénovation", "construction", "construction"]], [], [["Grenier aux nouvelles, 2023", "https://www.grenier.qc.ca/actualites/32435/le-nouveau-visage-de-lamajeure"]], "https://lamajeure.com"],
+ ["pixel-audio", ["Pixel Audio, régie Dolby Atmos et isoloir", "Pixel Audio, Dolby Atmos control room and vocal booth"], "p20", 3, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Mathieu Beaudet, Ulric Corbeil Trudel, Sean Gauthier Neilson et Eric Shaw", "construction", "construction"]], ["Raphaël Thibodeau", "Raphaël Thibodeau", ""], [], "https://pixelaudio.ca"],
+ ["ian-kelly", "Ian Kelly", "p09", 4, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Émilie Grou, Jean-Philippe Chevarier et Geoffrey Levine", "construction", "construction"]], [], [], ""],
+ ["treehouse", "Treehouse", "p12", 4, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["David Laflèche et Jonathan Laflèche", "construction", "construction"]], [], [["Journal Le Nord", "https://www.journallenord.com/culture/la-ou-des-chansons-prennent-vie/"]], ""],
+ ["lamajeure-d", "Lamajeure, Studio D", "p23", 4, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Perron Design", "design intérieur", "interior design"], ["Antarès Rénovation", "construction", "construction"]], [], [["Grenier aux nouvelles, 2023", "https://www.grenier.qc.ca/actualites/32435/le-nouveau-visage-de-lamajeure"]], "https://lamajeure.com"],
+ ["tone", "Tone Studio", "p07", 5, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Antarès Rénovation", "construction", "construction"]], ["James Duhamel", "James Duhamel", "James Duhamel", "James Duhamel", "James Duhamel"], [], "https://www.tonestudio.ca"],
+ ["phi", "Centre PHI, Habitat sonore", "p16", 3, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Phil Rochefort", "intégration audio", "audio integration"]], [], [["PAN M 360", "https://panm360.com/en/?p=120678"], ["PAN M 360", "https://panm360.com/en/gig_review/dans-lhabitat-sonore-un-moment-totalement-sublime-avec-moe-clark-et-pursuit-grooves"]], "https://phi.ca/fr/habitat-sonore/"],
+ ["fonetik", ["Studio Edgar, aujourd’hui fo.ne.tik", "Studio Edgar, now fo.ne.tik"], "p17", 10, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Antarès Rénovation", "construction", "construction"]], [], [], "https://fonetik.ca"],
+ ["le-hublot", "Studio Le Hublot", "p18", 8, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Carolyne La Branche", "construction et finitions", "construction and finishes"]], ["", "Julie Durocher", "Julie Durocher", "Julie Durocher", "Julie Durocher", "", "", "Julie Durocher"], [], "https://studiolehublot.com"],
+ ["beam", "Le BEAM, Sanctuaire 5.1", "p21", 5, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Bourassa Gaudreau & Associés architectes", "architecture", "architecture"], ["Équipe A architectes", "requalification de l’église", "church conversion"], ["Construction Boivin", "construction", "construction"]], ["", "", "", "", ""], [["Radio-Canada Première", "https://ici.radio-canada.ca/ohdio/premiere/emissions/dessine-moi-un-ete/segments/entrevue/363542/pilou-pierre-philippe-cote-beam"], ["La Presse, 2021", "https://www.lapresse.ca/arts/2021-01-30/une-eglise-chauffee-aux-bitcoins.php"], ["L’Étincelle", "https://www.letincelle.qc.ca/actualites/culturel/429830/pilou-et-son-equipe-inaugurent-officiellement-les-locaux-du-beam"]], "https://www.lebeam.ca"],
+ ["ryan-morey", "Ryan Morey Mastering", "p22", 4, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Ryan Morey", "construction", "construction"]], ["", "", "", ""], [], "https://www.ryanmoreymastering.com"],
+ ["la-shop", "La Shop", "p13", 5, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Antarès Rénovation", "construction", "construction"], ["Yann Veillette", "construction et finitions", "construction and finishes"]], [], [], "https://lashopstudios.com"],
+ ["codell", "Codell Audio", "p06", 4, [["Grantham Acoustique", "conception, design, acoustique et insonorisation des salles", "concept, design, room acoustics and soundproofing"], ["Antarès Rénovation", "construction", "construction"]], [], [], "https://www.codellaudio.com"]];
 const slides=[["h1.jpg","outpost"],["h2.jpg","circonflexe"],["h3.jpg","outpost"],["h9.jpg","treehouse"],["h4.jpg","circonflexe"],["h7.jpg","cult-nation"],["h5.jpg","outpost"],["h8.jpg","gamma"]];
 const byS=Object.fromEntries(P.map((p,i)=>[p[0],i]));
+const U={"outpost":"outpost-5-1","outpost-suite":"outpost-atmos","circonflexe":"studio-circonflex","fonetik":"studio-edgar","beam":"le-beam","lamajeure":"lamajeure-studio-f","lamajeure-d":"lamajeure-studio-d","phi":"habitat-sonore"};
+const byU=Object.fromEntries(Object.entries(U).map(([k,v])=>[v,k]));
+const hashOf=s=>U[s]||s;
 let L="fr";try{L=localStorage.getItem("ga-lang")||"fr"}catch(e){}
 const qs=new URLSearchParams(location.search).get("lang");if(qs==="en"||qs==="fr")L=qs;
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const nm=x=>Array.isArray(x)?x[L==="en"?1:0]:x;
 function lang(l){L=l;document.documentElement.lang=l;
  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=T[l][e.dataset.t]);
  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===l));
  try{localStorage.setItem("ga-lang",l)}catch(e){}
+ if(typeof grid==="function"&&document.querySelector("[data-grid] button"))grid();
  if(cur>=0)open(cur,true);}
 // grid
-document.querySelector("[data-grid]").innerHTML=P.map(p=>`<button data-open="${p[0]}"><img src="img/${p[2]}.jpg" alt="${esc(p[1])}" loading="lazy"><span>${esc(p[1])}</span></button>`).join("");
+function grid(){document.querySelector("[data-grid]").innerHTML=P.map(p=>`<button data-open="${p[0]}"><img src="img/${p[2]}.jpg" alt="${esc(nm(p[1]))}" loading="lazy"><span>${esc(nm(p[1]))}</span></button>`).join("")}
+grid();
 // carousel
 const car=document.querySelector("[data-car]"),tr=car.querySelector(".track"),cap=car.querySelector("[data-cap]");
-tr.innerHTML=slides.map(([s,k])=>`<img src="img/${s}" alt="${esc(P[byS[k]][1])}" data-open="${k}">`).join("");
-const CITY={treehouse:"Sainte-Adèle"};let ci=0;function go(i){ci=(i+slides.length)%slides.length;tr.scrollTo({left:tr.clientWidth*ci,behavior:"smooth"});cap.textContent=(P[byS[slides[ci][1]]][1].split(",")[0]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}
+tr.innerHTML=slides.map(([s,k])=>`<img src="img/${s}" alt="${esc(nm(P[byS[k]][1]))}" data-open="${k}">`).join("");
+const CITY={treehouse:"Sainte-Adèle"};let ci=0;function go(i){ci=(i+slides.length)%slides.length;tr.scrollTo({left:tr.clientWidth*ci,behavior:"smooth"});cap.textContent=(nm(P[byS[slides[ci][1]]][1]).split(",")[0]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}
 go(0);
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 let paused=false;car.addEventListener("pointerenter",()=>paused=true);car.addEventListener("pointerleave",()=>paused=false);
 if(!reduce)setInterval(()=>{if(!paused&&cur<0&&!document.hidden)go(ci+1)},5500);
-tr.addEventListener("scroll",()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);if(i!==ci&&i>=0&&i<slides.length){ci=i;cap.textContent=(P[byS[slides[ci][1]]][1].split(",")[0]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}},{passive:true});
+tr.addEventListener("scroll",()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);if(i!==ci&&i>=0&&i<slides.length){ci=i;cap.textContent=(nm(P[byS[slides[ci][1]]][1]).split(",")[0]+", "+(CITY[slides[ci][1]]||"Montréal")).toUpperCase()}},{passive:true});
 addEventListener("resize",()=>go(ci));
 // viewer
 const V=document.querySelector(".viewer"),VB=V.querySelector(".vbody");let cur=-1,lastFocus=null;
-function open(i,keep){cur=(i+P.length)%P.length;const [s,n,,c,co,cr=[],pr=[]]=P[cur],t=T[L];
- V.querySelector("#vtitle").textContent=n;
- let h="";for(let k=1;k<=c;k++){const who=cr[k-1];h+=`<figure><img src="img/${s}-${k}.jpg" alt="${esc(n)}, ${k}/${c}" ${k>2?'loading="lazy"':''}>${who?`<figcaption>${t.photo} : ${esc(who)}</figcaption>`:""}</figure>`}
- if(co.length||pr.length)h+=`<div class="vmeta">`+(co.length?`<p>${t.avec} ${co.map(esc).join(" · ")}</p>`:"")+(pr.length?`<p>${t.press} : ${pr.map(([a,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(a)}</a>`).join(" · ")}</p>`:"")+`</div>`;
+function open(i,keep){cur=(i+P.length)%P.length;const [s,n,,c,co,cr=[],pr=[],url=""]=P[cur],t=T[L];
+ V.querySelector("#vtitle").textContent=nm(n);
+ let h="";for(let k=1;k<=c;k++){const who=cr[k-1];h+=`<figure><img src="img/${s}-${k}.jpg" alt="${esc(nm(n))}, ${k}/${c}" ${k>2?'loading="lazy"':''}>${who?`<figcaption>${t.photo} : ${esc(who)}</figcaption>`:""}</figure>`}
+ h+=`<div class="vmeta">`+co.map(([w,fr,en])=>`<p>${esc(w)} : ${L==="en"?en:fr}</p>`).join("")+(pr.length?`<p class="vsp">${t.press} : ${pr.map(([a,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(a)}</a>`).join(" · ")}</p>`:"")+(url?`<p class="vsp">${t.site} : <a href="${url}" target="_blank" rel="noopener">${esc(url.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,""))}</a></p>`:"")+`</div>`;
  if(L==="en")h=h.replace(/ : /g,": ");
  VB.innerHTML=h;
- if(!keep){V.scrollTop=0;if(!V.classList.contains("on")){lastFocus=document.activeElement;V.classList.add("on");document.body.style.overflow="hidden"}
-  history.replaceState(null,"","#"+s);V.querySelector("[data-close]").focus({preventScroll:true})}}
-function close(){V.classList.remove("on");document.body.style.overflow="";cur=-1;history.replaceState(null,"",location.pathname+location.search);if(lastFocus)lastFocus.focus({preventScroll:true})}
+ if(!keep){V.scrollTop=0;if(!V.classList.contains("on")){lastFocus=document.activeElement;V.classList.add("on");document.body.style.overflow="hidden";history.pushState({v:1},"","#"+hashOf(s))}
+  else history.replaceState({v:1},"","#"+hashOf(s));V.querySelector("[data-close]").focus({preventScroll:true})}}
+function close(){if(history.state&&history.state.v){history.back();return}shut()}
+addEventListener("popstate",()=>{if(cur>=0&&!(history.state&&history.state.v))shut(true)});
+function shut(fromPop){V.classList.remove("on");document.body.style.overflow="";cur=-1;if(!fromPop)history.replaceState(null,"",location.pathname+location.search);if(lastFocus)lastFocus.focus({preventScroll:true})}
 document.addEventListener("click",e=>{const o=e.target.closest("[data-open]");if(o){open(byS[o.dataset.open]);return}
  if(e.target.closest("[data-close]"))close();if(e.target.closest("[data-prev]"))open(cur-1);if(e.target.closest("[data-next]"))open(cur+1);
  const lb=e.target.closest(".lang button");if(lb)lang(lb.dataset.l)});
 addEventListener("keydown",e=>{if(cur>=0){if(e.key==="Escape")close();if(e.key==="ArrowRight")open(cur+1);if(e.key==="ArrowLeft")open(cur-1);return}
  if(e.key==="ArrowRight")go(ci+1);if(e.key==="ArrowLeft")go(ci-1)});
 lang(L);
-const h=location.hash.slice(1);if(h in byS)open(byS[h]);
+let h=decodeURIComponent(location.hash.slice(1));if(h in byU)h=byU[h];if(h in byS){history.replaceState(null,"",location.pathname+location.search);open(byS[h])}
 }
 </script>
 </body>
